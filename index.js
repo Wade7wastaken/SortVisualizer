@@ -186,7 +186,6 @@ function* quick(arr, low = 0, high = arr.length() - 1) {
 		const pivot = arr.get(high);
 		let i = low - 1;
 
-
 		for (let j = low; j < high; j++) {
 			if (arr.get(j) < pivot) {
 				i++;
@@ -194,9 +193,7 @@ function* quick(arr, low = 0, high = arr.length() - 1) {
 			}
 		}
 
-
 		yield arr.swap(i + 1, high);
-
 
 		const pivotIndex = i + 1;
 
@@ -211,6 +208,7 @@ function* quick(arr, low = 0, high = arr.length() - 1) {
 
 /**
  * @param {ArraySort} arr
+ * @returns {Generator<void, void, void>}
  */
 function* shell(arr) {
 	const n = arr.length();
@@ -232,6 +230,7 @@ function* shell(arr) {
  * @param {ArraySort} array
  * @param {number} index
  * @param {number} heapSize
+ * @returns {Generator<void, void, void>}
  */
 function* heapify(array, index, heapSize) {
 	let largest = index;
@@ -351,6 +350,11 @@ function* combineGens(...gens) {
 	}
 }
 
+/**
+ *
+ * @param {string} id
+ * @returns {Element}
+ */
 function getIdSafe(id) {
 	let el = document.getElementById(id);
 	if (el == null) {
@@ -359,6 +363,12 @@ function getIdSafe(id) {
 	return el;
 }
 
+/**
+ *
+ * @param {string} id
+ * @param {string} title
+ * @returns {ArraySort}
+ */
 function attachSorter(id, title) {
 	let el = getIdSafe(id);
 	let numElements = getIdSafe("numElements");
@@ -383,6 +393,7 @@ function main() {
 
 	let sorting = false;
 
+	//@ts-ignore
 	start.onclick = async () => {
 		if (sorting) {
 			return;
@@ -403,7 +414,10 @@ function main() {
 		main();
 	};
 
+	//@ts-ignore
 	reset.onclick = onUpdateSettings;
+
+	//@ts-ignore
 	numElements.onchange = onUpdateSettings;
 }
 
